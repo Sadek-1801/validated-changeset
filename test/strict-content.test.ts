@@ -34,6 +34,15 @@ describe('Unit | strict content', () => {
         expect(dummy.get('title')).toBe('About');
       });
 
+      it('reads a changed field whose value is a strict record', () => {
+        const dummy: any = create(strictRecord({ title: 'About', owner: null }));
+        const owner = strictRecord({ name: 'Ada' });
+
+        dummy.set('owner', owner);
+
+        expect(dummy.get('owner')).toBe(owner);
+      });
+
       it('reads a changed field without asking the content', () => {
         const dummy: any = create(strictRecord({ title: 'About' }));
 
