@@ -1029,7 +1029,11 @@ export class BufferedChangeset implements IChangeset {
    * a key it does not have, such as WarpDrive schema records.
    */
   contentHasKey(content: Content, key: string): boolean {
-    return content !== null && typeof content === 'object' && key in content;
+    return (
+      content !== null &&
+      (typeof content === 'object' || typeof content === 'function') &&
+      key in content
+    );
   }
 
   /**

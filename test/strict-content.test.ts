@@ -28,6 +28,12 @@ describe('Unit | strict content', () => {
         expect(dummy.get('unknownProperty')).toBeUndefined();
       });
 
+      it('reads a field off function content', () => {
+        const dummy: any = create(Object.assign(function () {}, { title: 'About' }));
+
+        expect(dummy.get('title')).toBe('About');
+      });
+
       it('reads a changed field without asking the content', () => {
         const dummy: any = create(strictRecord({ title: 'About' }));
 

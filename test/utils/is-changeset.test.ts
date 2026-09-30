@@ -1,5 +1,5 @@
 import { Changeset } from '../../src';
-import isChangeset from '../../src/utils/is-changeset';
+import isChangeset, { CHANGESET } from '../../src/utils/is-changeset';
 import strictRecord from '../support/strict-record';
 
 describe('Unit | Utility | is changeset', function () {
@@ -18,6 +18,10 @@ describe('Unit | Utility | is changeset', function () {
 
   it('identifies a changeset wrapping a strict record', () => {
     expect(isChangeset(Changeset(strictRecord({ title: 'About' })))).toBeTruthy();
+  });
+
+  it('identifies a function marked as a changeset', () => {
+    expect(isChangeset(Object.assign(function () {}, { __changeset__: CHANGESET }))).toBeTruthy();
   });
 
   it('treats primitives as non-changesets', () => {
