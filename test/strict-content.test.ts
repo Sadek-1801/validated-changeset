@@ -51,6 +51,14 @@ describe('Unit | strict content', () => {
         expect(dummy.get('owner')).toBe(owner);
       });
 
+      it('sets a nested field', () => {
+        const dummy: any = create(schemaRecord('page', { owner: { name: 'Ada' } }));
+
+        dummy.set('owner.name', 'Bob');
+
+        expect(dummy.get('owner.name')).toBe('Bob');
+      });
+
       it('writes its changes to an editable record', async () => {
         const page: any = await checkout(schemaRecord('page', { title: 'About' }));
         const dummy: any = create(page);

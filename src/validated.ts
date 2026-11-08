@@ -159,6 +159,13 @@ export class ValidatedChangeset {
    * @override
    */
   safeGet(obj: any, key: string) {
+    // A flat read finds a nested key only if its name has a dot in it. Check
+    // with `in` first, since content such as a WarpDrive schema record throws
+    // on a key it does not have.
+    if (key.includes('.') && obj !== null && typeof obj === 'object' && !(key in obj)) {
+      return undefined;
+    }
+
     return obj[key];
   }
 
