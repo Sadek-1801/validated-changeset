@@ -1,6 +1,6 @@
 import { Changeset } from '../../src';
 import isChangeset, { CHANGESET } from '../../src/utils/is-changeset';
-import strictRecord from '../support/strict-record';
+import schemaRecord from '../support/schema-record';
 
 describe('Unit | Utility | is changeset', function () {
   it('it correctly identifies changesets', () => {
@@ -13,11 +13,11 @@ describe('Unit | Utility | is changeset', function () {
   });
 
   it('does not read unknown properties off the object', () => {
-    expect(isChangeset(strictRecord({ title: 'About' }))).toBeFalsy();
+    expect(isChangeset(schemaRecord('page', { title: 'About' }))).toBeFalsy();
   });
 
-  it('identifies a changeset wrapping a strict record', () => {
-    expect(isChangeset(Changeset(strictRecord({ title: 'About' })))).toBeTruthy();
+  it('identifies a changeset wrapping a schema record', () => {
+    expect(isChangeset(Changeset(schemaRecord('page', { title: 'About' })))).toBeTruthy();
   });
 
   it('identifies a function marked as a changeset', () => {

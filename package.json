@@ -50,6 +50,8 @@
     "@types/ungap__structured-clone": "^0.3.0",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
+    "@warp-drive/core": "5.9.1",
+    "@warp-drive/json-api": "5.9.1",
     "chalk": "^4.1.0",
     "command-line-args": "^5.1.1",
     "debug": "^4.1.1",
